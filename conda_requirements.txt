@@ -10,9 +10,12 @@ dependencies:
   - astroid=2.3.3=py37_0
   - atomicwrites=1.3.0=py37_1
   - attrs=19.3.0=py_0
+  - automat=0.8.0=py_0
   - autopep8=1.4.4=py_0
-  - babel=2.7.0=py_0
+  - babel=2.8.0=py_0
   - backcall=0.1.0=py37_0
+  - bcrypt=3.1.7=py37h1de35cc_0
+  - beautifulsoup4=4.8.2=py37_0
   - blas=1.0=mkl
   - bleach=3.1.0=py37_0
   - ca-certificates=2019.11.27=0
@@ -20,7 +23,9 @@ dependencies:
   - cffi=1.13.2=py37hb5b8e2f_0
   - chardet=3.0.4=py37_1003
   - cloudpickle=1.2.2=py_0
+  - constantly=15.1.0=py37h28b3542_0
   - cryptography=2.8=py37ha12b0ac_0
+  - cssselect=1.1.0=py_0
   - cycler=0.10.0=py37_0
   - dbus=1.13.12=h90a0687_0
   - decorator=4.4.1=py_0
@@ -28,6 +33,7 @@ dependencies:
   - diff-match-patch=20181111=py_0
   - docutils=0.15.2=py37_0
   - entrypoints=0.3=py37_0
+  - et_xmlfile=1.0.1=py37_0
   - expat=2.2.6=h0a44026_0
   - flake8=3.7.9=py37_0
   - freetype=2.9.1=hb4e5f40_0
@@ -36,16 +42,19 @@ dependencies:
   - glib=2.63.1=hd977a24_0
   - h5py=2.9.0=py37h3134771_0
   - hdf5=1.10.4=hfa1e0ec_0
+  - hyperlink=19.0.0=py_0
   - icu=58.2=h4b95b61_1
   - idna=2.8=py37_0
-  - imagesize=1.1.0=py37_0
+  - imagesize=1.2.0=py_0
   - importlib_metadata=1.3.0=py37_0
+  - incremental=17.5.0=py37_0
   - intel-openmp=2019.4=233
   - intervaltree=3.0.2=py_0
   - ipykernel=5.1.3=py37h39e3cac_0
   - ipython=7.11.1=py37h39e3cac_0
   - ipython_genutils=0.2.0=py37_0
   - isort=4.3.21=py37_0
+  - jdcal=1.4.1=py_0
   - jedi=0.14.1=py37_0
   - jinja2=2.10.3=py_0
   - joblib=0.14.1=py_0
@@ -65,7 +74,10 @@ dependencies:
   - libpng=1.6.37=ha441bb4_0
   - libsodium=1.0.16=h3efe00b_0
   - libspatialindex=1.9.3=h0a44026_0
+  - libxml2=2.9.9=hf6e021a_1
+  - libxslt=1.1.33=h33a18ac_0
   - llvm-openmp=4.0.1=hcfea43d_1
+  - lxml=4.4.2=py37hef8c89e_0
   - markupsafe=1.1.1=py37h1de35cc_0
   - matplotlib=3.1.1=py37h54f8f79_0
   - mccabe=0.6.1=py37_1
@@ -80,12 +92,14 @@ dependencies:
   - ncurses=6.1=h0a44026_1
   - numpy=1.17.4=py37h890c691_0
   - numpy-base=1.17.4=py37h6575580_0
-  - numpydoc=0.9.1=py_0
+  - numpydoc=0.9.2=py_0
+  - openpyxl=3.0.1=py_0
   - openssl=1.1.1d=h1de35cc_3
-  - packaging=19.2=py_0
+  - packaging=20.0=py_0
   - pandas=0.25.3=py37h0a44026_0
   - pandoc=2.2.3.2=0
   - pandocfilters=1.4.2=py37_1
+  - parsel=1.5.2=py37_0
   - parso=0.5.2=py_0
   - pathtools=0.1.2=py_1
   - patsy=0.5.1=py37_0
@@ -97,19 +111,25 @@ dependencies:
   - prompt_toolkit=3.0.2=py_0
   - psutil=5.6.7=py37h1de35cc_0
   - ptyprocess=0.6.0=py37_0
+  - py=1.8.1=py_0
+  - pyasn1=0.4.8=py_0
+  - pyasn1-modules=0.2.7=py_0
   - pycodestyle=2.5.0=py37_0
   - pycparser=2.19=py37_0
+  - pydispatcher=2.0.5=py37_1
   - pydocstyle=4.0.1=py_0
   - pyflakes=2.1.1=py37_0
   - pygments=2.5.2=py_0
+  - pyhamcrest=1.9.0=py37_2
   - pylint=2.4.4=py37_0
-  - pympler=0.7=py_0
   - pyopenssl=19.1.0=py37_0
-  - pyparsing=2.4.5=py_0
+  - pyparsing=2.4.6=py_0
   - pyqt=5.9.2=py37h655552a_2
   - pyrsistent=0.15.6=py37h1de35cc_0
   - pysocks=1.7.1=py37_0
-  - python=3.7.5=h359304d_0
+  - pytest=5.3.2=py37_0
+  - pytest-runner=5.2=py_0
+  - python=3.7.6=h359304d_1
   - python-dateutil=2.8.1=py_0
   - python-jsonrpc-server=0.3.2=py_0
   - python-language-server=0.31.2=py37_0
@@ -120,28 +140,33 @@ dependencies:
   - qdarkstyle=2.7=py_0
   - qt=5.9.7=h468cd18_1
   - qtawesome=0.6.0=py_0
-  - qtconsole=4.6.0=py_0
+  - qtconsole=4.6.0=py_1
   - qtpy=1.9.0=py_0
+  - queuelib=1.5.0=py37_0
   - readline=7.0=h1de35cc_5
   - requests=2.22.0=py37_1
   - rope=0.14.0=py_0
   - rtree=0.8.3=py37_0
   - scikit-learn=0.21.3=py37h27c97d8_0
   - scipy=1.3.1=py37h1410ff5_0
+  - scrapy=1.6.0=py37_0
   - seaborn=0.9.0=pyh91ea838_1
+  - selenium=3.141.0=py37h1de35cc_0
+  - service_identity=18.1.0=py37h28b3542_0
   - setuptools=44.0.0=py37_0
   - sip=4.19.8=py37h0a44026_0
   - six=1.13.0=py37_0
   - snowballstemmer=2.0.0=py_0
   - sortedcontainers=2.1.0=py37_0
-  - sphinx=2.3.0=py_0
+  - soupsieve=1.9.5=py37_0
+  - sphinx=2.3.1=py_0
   - sphinxcontrib-applehelp=1.0.1=py_0
   - sphinxcontrib-devhelp=1.0.1=py_0
   - sphinxcontrib-htmlhelp=1.0.2=py_0
   - sphinxcontrib-jsmath=1.0.1=py_0
   - sphinxcontrib-qthelp=1.0.2=py_0
   - sphinxcontrib-serializinghtml=1.1.3=py_0
-  - spyder=4.0.0=py37_0
+  - spyder=4.0.1=py37_0
   - spyder-kernels=1.8.1=py37_0
   - sqlite=3.30.1=ha441bb4_0
   - statsmodels=0.10.1=py37h1d22016_0
@@ -149,8 +174,10 @@ dependencies:
   - tk=8.6.8=ha441bb4_0
   - tornado=6.0.3=py37h1de35cc_0
   - traitlets=4.3.3=py37_0
+  - twisted=19.10.0=py37h1de35cc_0
   - ujson=1.35=py37h1de35cc_0
   - urllib3=1.25.7=py37_0
+  - w3lib=1.21.0=py_0
   - watchdog=0.9.0=py37_1
   - wcwidth=0.1.7=py37_0
   - webencodings=0.5.1=py37_1
@@ -163,5 +190,7 @@ dependencies:
   - zeromq=4.3.1=h0a44026_3
   - zipp=0.6.0=py_0
   - zlib=1.2.11=h1de35cc_3
+  - zope=1.0=py37_1
+  - zope.interface=4.7.1=py37h1de35cc_0
 prefix: /Users/foretrouge7/opt/anaconda3/envs/venv_mldl
 
