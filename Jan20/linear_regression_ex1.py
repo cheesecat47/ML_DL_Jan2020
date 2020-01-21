@@ -27,7 +27,7 @@ y = tftf.placeholder(tf.float32)
 
 # 선형회귀 모델 연산 정의
 linear_model = W*x + b
-loss = tf.reduce_mean(tf.square(linear_model - y))  # 손실 함수 정의
+loss = tf.reduce_mean(tf.square(linear_model - y))  # 손실 함수 정의, mean-square
 
 tftf.summary.scalar('loss', loss)  # 텐서보드 위한 요약정보(scala) 정의
 
