@@ -2,5 +2,5 @@
     "python.linting.pylintEnabled": true,
     "python.linting.flake8Enabled": false,
     "python.linting.enabled": true,
-    "python.pythonPath": "/Users/foretrouge7/opt/anaconda3/envs/venv_mldl/bin/python"
+    "python.pythonPath": "/Users/foretrouge7/ML_DL_Jan2020/v_mldl/bin/python3"
 }

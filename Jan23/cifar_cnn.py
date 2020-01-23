@@ -10,7 +10,10 @@ from keras.callbacks import History
 import os
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 
-logging.basicConfig(filename='cifar_cnn.log',
+base_name = 'cifar_cnn'
+epoch = 50
+
+logging.basicConfig(filename='{}_epoch{}.log'.format(base_name, epoch),
                     level=logging.DEBUG,
                     format='[%(asctime)s] %(name)s %(levelname)s \n%(message)s'
                     )
@@ -30,8 +33,6 @@ logger.info('-------------------- cifar10.load_data() --------------------')
 
 # (2) 데이터가공 ------------------------------------------
 # 3차원 변환 및 정규화
-# X_train = X_train.reshape(-1, im_size).astype('float32') / 255
-# X_test = X_test.reshape(-1, im_size).astype('float32') / 255
 X_train = X_train.astype('float32') / 255
 X_test = X_test.astype('float32') / 255
 logger.info('-------------------- Reshaping. --------------------')
@@ -85,15 +86,11 @@ history_callback = History()
 
 hist = model.fit(X_train, y_train,
                  batch_size=32,
-                 epochs=5,
+                 epochs=epoch,
                  verbose=1,
                  validation_data=(X_test, y_test),
                  callbacks=[history_callback]
                  )
-# logger.info(hist.history['acc'])
-# logger.info(hist.history['val_acc'])
-# logger.info(hist.history['loss'])
-# logger.info(hist.history['val_loss'])
 
 # 모델 평가하기
 score = model.evaluate(X_test, y_test, verbose=1)
@@ -106,13 +103,15 @@ plt.plot(hist.history['val_acc'])
 plt.title('Accuracy')
 plt.legend(['train', 'test'], loc='upper left')
 plt.show()
-plt.savefig('cifar_cnn_accuracy.png', dpi=72)
+plt.savefig(base_name + 'epoch'+epoch + '_accuracy.png', dpi=72)
+plt.savefig(base_name + 'epoch'+epoch + '_accuracy.svg', dpi=72)
 
 plt.plot(hist.history['loss'])
 plt.plot(hist.history['val_loss'])
 plt.title('Loss')
 plt.legend(['train', 'test'], loc='upper left')
 plt.show()
-plt.savefig('cifar_cnn_loss.png', dpi=72)
+plt.savefig(base_name + 'epoch' + epoch + '_loss.png', dpi=72)
+plt.savefig(base_name + 'epoch' + epoch + '_loss.svg', dpi=72)
 
-model.save_weights('cifar10-cnn.h5')
+model.save_weights('{}_epoch_{}.h5'.format(base_name, epoch))
