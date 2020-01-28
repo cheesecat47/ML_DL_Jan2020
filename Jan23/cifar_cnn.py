@@ -10,14 +10,28 @@ from keras.callbacks import History
 import os
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 
-base_name = 'cifar_cnn'
-epoch = 50
 
-logging.basicConfig(filename='{}_epoch{}.log'.format(base_name, epoch),
+# setting
+base_name = 'cifar_cnn'
+epoch = 30
+activation1 = 'relu'
+activation2 = 'softmax'
+optimizer = keras.optimizers.Adam(0.001)
+optimizer_name = 'adam'
+dropout = 0.2
+
+logging.basicConfig(filename='logs/{}_epoch{}_func{}_opt{}.log'.format(
+                                base_name, epoch, activation1, optimizer_name),
                     level=logging.DEBUG,
                     format='[%(asctime)s] %(name)s %(levelname)s \n%(message)s'
                     )
 logger = logging.getLogger(__name__)
+
+logger.info("-------------------- Learning Settings --------------------")
+logger.info('epoch = {}'.format(epoch))
+logger.info('activation_functions = {}, {}'.format(activation1, activation2))
+logger.info('optimizer = {}'.format(optimizer_name))
+logger.info('dropout = {}'.format(dropout))
 logger.info("-------------------- Start training! --------------------")
 
 # 데이터 변수 선언
@@ -47,31 +61,31 @@ model = Sequential()
 
 # convolution layers
 model.add(Conv2D(32, (3, 3), padding='same', input_shape=in_shape))
-model.add(Activation('relu'))
+model.add(Activation(activation1))
 model.add(Conv2D(32, (3, 3)))
-model.add(Activation('relu'))
+model.add(Activation(activation1))
 model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.25))
+model.add(Dropout(dropout))
 
 model.add(Conv2D(64, (3, 3), padding='same'))
-model.add(Activation('relu'))
+model.add(Activation(activation1))
 model.add(Conv2D(64, (3, 3)))
-model.add(Activation('relu'))
+model.add(Activation(activation1))
 model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.25))
+model.add(Dropout(dropout))
 
 model.add(Flatten())    # 3차원 -> 1차원
 model.add(Dense(512))   # Dense가 1차원밖에 못 받음
-model.add(Activation('relu'))
-model.add(Dropout(0.25))
+model.add(Activation(activation1))
+model.add(Dropout(dropout))
 model.add(Dense(num_classes))
-model.add(Activation('softmax'))
+model.add(Activation(activation2))
 logger.info('-------------------- Define CNN model --------------------')
 
 # 모델 생성
 model.compile(
     loss='categorical_crossentropy',
-    optimizer='adam',
+    optimizer=optimizer,
     metrics=['accuracy']
 )
 logger.info('-------------------- model.compile() --------------------')
@@ -82,14 +96,16 @@ logger.info('-------------------- model.compile() --------------------')
 # validation_data => 각 epoch마다 검증 데이터 정확도 출력
 # validation_split => 데이터셋 비율
 logger.info("-------------------- Start model.fit() --------------------")
-history_callback = History()
 
 hist = model.fit(X_train, y_train,
                  batch_size=32,
                  epochs=epoch,
                  verbose=1,
                  validation_data=(X_test, y_test),
-                 callbacks=[history_callback]
+                 callbacks=[
+                     keras.callbacks.History(),
+                     keras.callbacks.EarlyStopping(monitor='val_acc')
+                     ]
                  )
 
 # 모델 평가하기
@@ -102,16 +118,38 @@ plt.plot(hist.history['acc'])
 plt.plot(hist.history['val_acc'])
 plt.title('Accuracy')
 plt.legend(['train', 'test'], loc='upper left')
-plt.show()
-plt.savefig(base_name + 'epoch'+epoch + '_accuracy.png', dpi=72)
-plt.savefig(base_name + 'epoch'+epoch + '_accuracy.svg', dpi=72)
+try:
+    plt .show()
+except Exception as e:
+    logger.error(e)
+
+try:
+    plt.savefig('results/{}_epoch{}_func{}_opt{}_{}.{}'.format(
+            base_name, epoch, activation1, optimizer_name, 'accuracy', 'png'), dpi=72)
+    plt.savefig('results/{}_epoch{}_func{}_opt{}_{}.{}'.format(
+            base_name, epoch, activation1, optimizer_name, 'accuracy', 'svg'), dpi=72)
+except Exception as e:
+    logger.error(e)
 
 plt.plot(hist.history['loss'])
 plt.plot(hist.history['val_loss'])
 plt.title('Loss')
 plt.legend(['train', 'test'], loc='upper left')
-plt.show()
-plt.savefig(base_name + 'epoch' + epoch + '_loss.png', dpi=72)
-plt.savefig(base_name + 'epoch' + epoch + '_loss.svg', dpi=72)
+try:
+    plt .show()
+except Exception as e:
+    logger.error(e)
 
-model.save_weights('{}_epoch_{}.h5'.format(base_name, epoch))
+try:
+    plt.savefig('results/{}_epoch{}_func{}_opt{}_{}.{}'.format(
+            base_name, epoch, activation1, optimizer_name, 'loss', 'png'), dpi=72)
+    plt.savefig('results/{}_epoch{}_func{}_opt{}_{}.{}'.format(
+            base_name, epoch, activation1, optimizer_name, 'loss', 'svg'), dpi=72)
+except Exception as e:
+    logger.error(e)
+
+try:
+    model.save_weights('results/{}_epoch{}_func{}_opt{}.{}'.format(
+            base_name, epoch, activation1, optimizer_name, 'h5'))
+except Exception as e:
+    logger.error(e)
