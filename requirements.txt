@@ -11,7 +11,7 @@ autopep8==1.5
 Babel==2.8.0
 backcall==0.1.0
 beautifulsoup4==4.8.2
-bleach==3.1.0
+bleach>=3.1.4
 certifi==2019.11.28
 chardet==3.0.4
 cloudpickle==1.2.2
@@ -225,7 +225,7 @@ spyder==4.0.1
 spyder-kernels==1.8.1
 statsmodels==0.11.0
 tensorboard==1.15.0
-tensorflow==1.15.0
+tensorflow>=2.4.0
 tensorflow-estimator==1.15.1
 termcolor==1.1.0
 testpath==0.4.4
